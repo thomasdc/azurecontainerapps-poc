@@ -1,0 +1,23 @@
+name: Provision
+
+on:
+  workflow_dispatch:
+
+env:
+  CONTAINER_APP_NAME: acapoc-ca
+
+jobs:
+  provision:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Create containerapp
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az containerapp create -n ${{ env.CONTAINER_APP_NAME }} -g ${{ secrets.RESOURCE_GROUP }} --ingress external --target-port 5000 --registry-server ${{ secrets.REGISTRY_LOGIN_SERVER }} --cpu 0.5 --memory 1.0Gi --min-replicas 0 --max-replicas 1 --location "northeurope"
