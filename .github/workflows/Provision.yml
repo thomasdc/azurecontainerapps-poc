@@ -5,6 +5,7 @@ on:
 
 env:
   CONTAINER_APP_NAME: acapoc-ca
+  CONTAINER_APP_ENV: acapoc-cae
 
 jobs:
   provision:
@@ -21,4 +22,5 @@ jobs:
         with:
           inlineScript: |
             az config set extension.use_dynamic_install=yes_without_prompt
-            az containerapp create -n ${{ env.CONTAINER_APP_NAME }} -g ${{ secrets.RESOURCE_GROUP }} --ingress external --target-port 5000 --registry-server ${{ secrets.REGISTRY_LOGIN_SERVER }} --cpu 0.5 --memory 1.0Gi --min-replicas 0 --max-replicas 1
+            az containerapp env create -n ${{ env.CONTAINER_APP_ENV }} -g ${{ secrets.RESOURCE_GROUP }} --location northeurope
+            az containerapp create -n ${{ env.CONTAINER_APP_NAME }} -g ${{ secrets.RESOURCE_GROUP }} --environment ${{ env.CONTAINER_APP_ENV }} --ingress external --target-port 5000 --registry-server ${{ secrets.REGISTRY_LOGIN_SERVER }} --cpu 0.5 --memory 1.0Gi --min-replicas 0 --max-replicas 1
