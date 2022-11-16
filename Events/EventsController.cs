@@ -9,7 +9,7 @@ public class EventsController : ControllerBase
     [HttpGet]
     public async Task<YearWithEventsDto[]> GetAllEvents()
     {
-        await Task.Delay(Random.Shared.Next(5));
+        await Task.Delay(Random.Shared.Next(5000));
         return new[]
         {
             new YearWithEventsDto(1968, new[]
