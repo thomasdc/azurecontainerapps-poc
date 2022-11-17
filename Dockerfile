@@ -9,7 +9,7 @@ RUN apt-get install -y nodejs
 
 # Restore npm packages
 WORKDIR /src/front-src
-COPY ["front-src/package*.json", "."]
+COPY ["front-src/package*.json", "./"]
 RUN npm ci
 
 # Restore nuget packages
