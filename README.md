@@ -2,7 +2,7 @@
 
 # What?
 
-This is a sample repository of a Vue3 SPA embedded in an ASP.NET Core application hosted on [Azure Container Apps](https://acapoc-ca--bkn0lq3.nicedune-6b35d3ac.northeurope.azurecontainerapps.io/) using GitHub Actions.
+This is a sample repository of a Vue3 SPA embedded in an ASP.NET Core application hosted on [Azure Container Apps](https://acapoc-ca.nicedune-6b35d3ac.northeurope.azurecontainerapps.io/) using GitHub Actions.
 
 # How to run locally
 
