@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import type { PropType } from 'vue'
+import { useQuasar, QSpinnerPuff } from 'quasar'
 import axios from 'axios';
 
 interface EventDto {
@@ -22,15 +22,23 @@ export default defineComponent({
     }
   },
   async mounted(): Promise<void> {
-    const { data } = await axios.get('/api/events');
-    this.yearsWithEvents = data;
+    const $q = useQuasar();
+    $q.loading.show({
+      message: 'Fetching data. Hang on...',
+      spinner: QSpinnerPuff
+    });
+    try {
+      const { data } = await axios.get('/api/events');
+      this.yearsWithEvents = data;
+    } finally {
+      $q.loading.hide();
+    }
   }
 })
 </script>
 
 <template>
-  <div v-if="!yearsWithEvents.length">Loading...</div>
-  <div v-else class="q-px-lg q-pb-md">
+  <div class="q-px-lg q-pb-md">
     <q-timeline color="secondary">
       <template v-for="entry in yearsWithEvents">
         <q-timeline-entry heading>
