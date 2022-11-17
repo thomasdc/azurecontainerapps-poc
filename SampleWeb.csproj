@@ -13,8 +13,4 @@
     <None Remove="front-src\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="7.0.0" />
-  </ItemGroup>
-
 </Project>

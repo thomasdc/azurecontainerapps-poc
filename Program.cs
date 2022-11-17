@@ -17,17 +17,5 @@ app.UseStaticFiles(new StaticFileOptions
 });
 app.UseAuthorization();
 app.MapControllers();
-app.UseSpa(spaBuilder =>
-{
-    spaBuilder.Options.DefaultPage = "/index.html";
-    spaBuilder.Options.DefaultPageStaticFileOptions = new StaticFileOptions
-    {
-        OnPrepareResponse = context =>
-        {
-            context.Context.Response.Headers.Add("Cache-Control", "no-cache, no-store");
-            context.Context.Response.Headers.Add("Expires", "-1");
-        }
-    };
-});
 
 app.Run();
